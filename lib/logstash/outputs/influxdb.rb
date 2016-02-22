@@ -52,7 +52,7 @@ class LogStash::Outputs::InfluxDB < LogStash::Outputs::Base
 
   public
   def register
-    require "ftw" # gem ftw
+    require 'ftw' # gem ftw
     require 'cgi'
     @agent = FTW::Agent.new
     @queue = []
@@ -60,6 +60,8 @@ class LogStash::Outputs::InfluxDB < LogStash::Outputs::Base
     @query_params = "db=#{@db}&u=#{@user}&p=#{@password.value}"
     @base_url = "#{@scheme}://#{@host}:#{@port}/write"
     @url = "#{@base_url}?#{@query_params}"
+
+    @logger.info("url => #{url}")
 
     buffer_initialize(
       :max_items => @flush_size,
