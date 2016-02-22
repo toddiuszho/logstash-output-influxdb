@@ -61,7 +61,7 @@ class LogStash::Outputs::InfluxDB < LogStash::Outputs::Base
     @base_url = "#{@scheme}://#{@host}:#{@port}/write"
     @url = "#{@base_url}?#{@query_params}"
 
-    @logger.info("url => #{url}")
+    @logger.info("url => #{@url}")
 
     buffer_initialize(
       :max_items => @flush_size,
